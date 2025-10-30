@@ -9,9 +9,9 @@
                 <h3>{{ post.title }}</h3>
                 <p>{{ post.content|truncatewords:30 }}</p>
                 <div class="options">
-                    <a href="{% url 'detail' post.id %}" class="read btn btn-outline-primary">Read more</a>
-                    <a href="{% url 'edit' post.id%}" class="edit btn btn-outline-warning">edit post</a>
-                    <a href="{% url 'delete-post' post.id%}" class="delete btn btn-outline-danger">Delete the Post</a>
+                    <a href="{% url 'detail' post.id %}" class="read btn btn-primary">Read more</a>
+                    <a href="{% url 'edit' post.id%}" class="edit btn btn-warning">edit post</a>
+                    <a href="{% url 'delete-post' post.id%}" class="delete btn btn-danger">Delete the Post</a>
                 </div>
                 
             </li>
