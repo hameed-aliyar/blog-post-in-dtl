@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 
-from posts.forms import CreatePostForm, EditPostForm
+from posts.forms import CreatePostForm, EditPostForm, LoginForm, RegisterForm
 
+from django.contrib.auth.models import User
 from .models import Posts
 
 # Create your views here.
@@ -46,3 +47,19 @@ def delete(request, pk):
         post.delete()
         return redirect('posts-home')
     return render(request, 'posts/delete.html', {'post': post})
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = f"user_{User.objects.count() + 1}"
+            user.save()
+            form.save(commit=True)
+        return redirect("login")
+    form = RegisterForm()
+    return render(request, "posts/register.html", {'form': form} )
+    
+def login(request):
+    form = LoginForm()
+    return render(request, "posts/login.html", {'form': form} )

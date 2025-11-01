@@ -29,6 +29,10 @@ body {
     font-weight: bold;
 }
 
+.site-header .navigation a:hover {
+    color: #616161;
+}
+
 .site-body {
     padding: 20px;
     max-width: 800px;
