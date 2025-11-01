@@ -7,6 +7,9 @@
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Register</button>
+        {% if error %}
+            <p style="color:red">{{ error }}</p>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
 {% endblock %}

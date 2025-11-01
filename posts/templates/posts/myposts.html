@@ -1,7 +1,7 @@
 {% extends 'posts/base.html' %}
 
 {% block content %}
-    <h2>Blog Posts</h2>
+    <h2>My Blog Posts</h2>
     <ul class="post-list">
         {% for post in posts %}
             <li class="post-item">
@@ -9,6 +9,8 @@
                 <p>{{ post.content|truncatewords:30 }}</p>
                 <div class="options">
                     <a href="{% url 'detail' post.id %}" class="read btn btn-primary">Read more</a>
+                    <a href="{% url 'edit' post.id%}" class="edit btn btn-warning">edit post</a>
+                    <a href="{% url 'delete-post' post.id%}" class="delete btn btn-danger">Delete the Post</a>
                 </div>
                 
             </li>

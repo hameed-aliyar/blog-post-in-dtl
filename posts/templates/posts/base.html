@@ -17,8 +17,14 @@
         <div class="logo">My Blog App</div>
         <div class="navigation">
             <a href="/">Home</a>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
+            {% if user.is_authenticated %}
+                <a href="/post/new/">Create Post</a>
+                <a href="/myposts/">My Posts</a>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/register">Register</a>
+                <a href="/login">Login</a>
+            {% endif %}
         </div>
     </div>
 

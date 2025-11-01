@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 
 from posts.forms import CreatePostForm, EditPostForm, LoginForm, RegisterForm
-
+from django.contrib.auth import login, logout
 from django.contrib.auth.models import User
-from .models import Posts
+from .models import Posts, Profile
 
 # Create your views here.
 def home(request):
@@ -24,7 +24,9 @@ def create(request):
     if request.method == 'POST':
         form = CreatePostForm(request.POST)
         if form.is_valid():
-            form.save()
+            post = form.save(commit=False)
+            post.author = request.user  # ✅ Set the author here
+            post.save()
             return redirect('posts-home')
     else:
         form = CreatePostForm()
@@ -60,6 +62,30 @@ def register(request):
     form = RegisterForm()
     return render(request, "posts/register.html", {'form': form} )
     
-def login(request):
+def loginn(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+
+            try:
+                profile = Profile.objects.get(email=email)
+                user = profile.user
+            except Profile.DoesNotExist:
+                return render(request, "posts/login.html", {'form': form, 'error': 'Invalid email or password.'})
+            if user.check_password(password):
+                login(request, user)
+                return redirect("posts-home")
+            else:
+                return render(request, "posts/login.html", {'form': form, 'error': 'Invalid email or password.'})
     form = LoginForm()
     return render(request, "posts/login.html", {'form': form} )
+
+def logoutt(request):
+    logout(request)
+    return redirect("posts-home")
+
+def myposts(request):
+    posts = Posts.objects.filter(author=request.user)
+    return render(request, "posts/myposts.html", {'posts': posts})
