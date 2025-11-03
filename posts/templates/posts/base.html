@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="site-header">
-        <div class="logo">My Blog App</div>
+        <div class="logo"><a href="{% url 'posts-home' %}">My Blog App</a></div>
         <div class="navigation">
             <a href="/">Home</a>
             {% if user.is_authenticated %}

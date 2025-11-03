@@ -4,6 +4,12 @@
 
 {% block content %}
     <h2>Login if you already registered</h2>
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: green;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
     <form method="POST">
         {% csrf_token %}
         {{ form|crispy }}

@@ -2,5 +2,10 @@
 {% block content %}
     <h2>{{ post.title }}</h2>
     <p>{{ post.content }}</p>
-    <a href="{% url 'posts-home' %}" class="btn btn-outline-success">Back to Home</a>
+    <div class="detail-buttons">
+        {% if user.is_authenticated %}
+            <a href="{% url 'myposts' %}" class="btn btn-outline-primary">Go to My Posts</a>
+        {% endif %}
+        <a href="{% url 'posts-home' %}" class="btn btn-outline-success">Go to Home</a>
+    </div>
 {% endblock %}

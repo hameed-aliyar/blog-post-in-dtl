@@ -104,3 +104,14 @@ body {
     flex-direction: column;
     gap: 8px;
 }
+
+.detail-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
