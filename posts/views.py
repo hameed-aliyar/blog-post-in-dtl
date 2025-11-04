@@ -103,5 +103,5 @@ def logoutt(request):
     return redirect("posts-home")
 
 def myposts(request):
-    posts = Posts.objects.filter(author=request.user)
+    posts = Posts.objects.filter(author=request.user).order_by('-created_at')
     return render(request, "posts/myposts.html", {'posts': posts})
