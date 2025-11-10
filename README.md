@@ -111,7 +111,7 @@ Note: There are no automated tests included in this repository yet.
 
 The `Posts` and `Profile` models are registered in `posts/admin.py`, so after creating a superuser you can manage posts and profiles via `/admin/`.
 
-## Security / constraints observed in code
+## Security / constraints in code
 
 - DEBUG = True in `blogpost/settings.py` — this is intended for development only.
 - Email is used as the unique identifier in `Profile` and for login; usernames are auto-generated during registration (format `user_<n>`).
